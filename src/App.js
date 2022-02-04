@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import Cartesian from "./components/cartesian"
+import DataInput from './components/DataInput/DataInput';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="main__container">
+        <div className="main__cartesian">
+          <Cartesian></Cartesian>
+        </div>
+        <div className="main__data-input">
+          <DataInput></DataInput>
+        </div>
+      </div>
+    </>
   );
 }
 

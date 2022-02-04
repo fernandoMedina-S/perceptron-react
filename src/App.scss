@@ -1,0 +1,15 @@
+@import "./components/cartesian/cartesian";
+@import "./components/DataInput/data-input";
+
+.main__container{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.main__cartesian{
+    grid-column: 1;
+}
+
+.main__data-input{
+    grid-column: 2;
+}
