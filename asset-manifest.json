@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/perceptron-react/static/css/main.90c99ac6.css",
+    "main.js": "/perceptron-react/static/js/main.db4a1bba.js",
+    "static/js/787.a4a4e8a8.chunk.js": "/perceptron-react/static/js/787.a4a4e8a8.chunk.js",
+    "index.html": "/perceptron-react/index.html",
+    "main.90c99ac6.css.map": "/perceptron-react/static/css/main.90c99ac6.css.map",
+    "main.db4a1bba.js.map": "/perceptron-react/static/js/main.db4a1bba.js.map",
+    "787.a4a4e8a8.chunk.js.map": "/perceptron-react/static/js/787.a4a4e8a8.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.90c99ac6.css",
+    "static/js/main.db4a1bba.js"
+  ]
+}
