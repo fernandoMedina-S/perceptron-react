@@ -1,14 +1,17 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 
 const Cartesian = () => {
   const canvasRef = useRef(null);
   const contextRef = useRef(null);
+  const points = [];
   
 
   const drawPoint = ({nativeEvent}) => {
     const {offsetX, offsetY} = nativeEvent;
     contextRef.current.fillRect(offsetX, offsetY, 10, 10);
-    console.log(offsetX + " " + offsetY);
+    const newPoint = {offsetX, offsetY};
+    points.push(newPoint);
+    points.forEach((element) => console.log(element));
   };
 
   useEffect(()=>{
