@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Box from "@mui/material/Box";
+import axios from "axios";
 
 const DataInput = () =>{
 
-    const submitHandler = (event) =>{
+    
+
+    const submitHandler = async (event) =>{
         event.preventDefault();
         const points = JSON.parse(localStorage.getItem("points"));
-        console.log(points);
+
+        const response = await axios.post("http://127.0.0.1:3030/grafica", points);
+        console.log(response);
+        
     }
 
     return (
