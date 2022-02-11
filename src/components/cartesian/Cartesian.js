@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect } from "react";
 
 const Cartesian = () => {
   const canvasRef = useRef(null);
@@ -11,7 +11,8 @@ const Cartesian = () => {
     contextRef.current.fillRect(offsetX, offsetY, 10, 10);
     const newPoint = {offsetX, offsetY};
     points.push(newPoint);
-    points.forEach((element) => console.log(element));
+
+    localStorage.setItem("points", JSON.stringify(points));
   };
 
   useEffect(()=>{
