@@ -1,6 +1,7 @@
 import './App.scss';
 import Cartesian from "./components/cartesian"
 import DataInput from './components/DataInput/DataInput';
+import MathPlot from "./components/MathPlot/MathPlot";
 
 
 function App() {
@@ -8,7 +9,8 @@ function App() {
     <>
       <div className="main__container">
         <div className="main__cartesian">
-          <Cartesian></Cartesian>
+          {/* <Cartesian></Cartesian> */}
+          <MathPlot></MathPlot>
         </div>
         <div className="main__data-input">
           <DataInput></DataInput>
