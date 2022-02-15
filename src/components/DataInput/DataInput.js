@@ -29,7 +29,8 @@ const DataInput = () => {
     );
     store.dispatch({
       type: "SET_FUNCTION",
-      body: w.w1 + "*" + xValues.x1 + "+" + w.w2 + "*" + xValues.x2,
+      //body: w.w1 + "*" + xValues.x1 + "+" + w.w2 + "*" + xValues.x2,
+      body: w.w1 + "x" +  "+" + w.w2 + "x",
     });
   };
 
