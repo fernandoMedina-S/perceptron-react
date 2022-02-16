@@ -6,7 +6,8 @@ import axios from "axios";
 
 import { connect } from "react-redux";
 import { store } from "../../services/store";
-
+//"http://perceptron-back.herokuapp.com/grafica"
+//"http://localhost:5000/grafica"
 const DataInput = () => {
 
 
@@ -21,7 +22,7 @@ const DataInput = () => {
 
     const generalInfo = { points, xValues, w, locations };
     const response = await axios.post(
-      "http://127.0.0.1:3030/grafica",
+      "http://perceptron-back.herokuapp.com/grafica",
       generalInfo
     );
     console.log(generalInfo);
