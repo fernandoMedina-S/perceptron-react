@@ -22,7 +22,7 @@ const DataInput = () => {
 
     const generalInfo = { points, xValues, w, locations };
     const response = await axios.post(
-      "http://perceptron-back.herokuapp.com/grafica",
+      "https://perceptron-back.herokuapp.com/grafica",
       generalInfo
     );
     console.log(generalInfo);
