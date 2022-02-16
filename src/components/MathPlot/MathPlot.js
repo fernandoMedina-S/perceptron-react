@@ -3,37 +3,52 @@ import functionPlot, { FunctionPlotOptions } from "function-plot";
 
 import { connect } from "react-redux";
 
-const MathPlot = ({ Function }) => {
+const MathPlot = ({ Function, evaluated }) => {
   const rootEl = useRef(null);
   const canvasEl = useRef(null);
   const contextRef = useRef(null);
   const points = [];
   const [fnP, setFnP] = useState("0");
-  const [activation, setActivation] = useState(false);
-  const localFunction = Function;
+  const real_locations = []
 
   const drawPoint = ({ nativeEvent }) => {
     const { offsetX, offsetY } = nativeEvent;
-    contextRef.current.fillRect(offsetX, offsetY, 10, 10);
-    const newPoint = { offsetX, offsetY };
+
+    contextRef.current.beginPath();
+    contextRef.current.arc(offsetX, offsetY, 2, 0, 2 * Math.PI, true);
+    contextRef.current.fill();
+    const newPoint = {
+      offsetX: parseFloat(offsetX / 6) - 30,
+      offsetY: -1 * (parseFloat(offsetY / 6) - 30),
+    };
+    const realLocation = {
+      offsetX,
+      offsetY
+    }
     points.push(newPoint);
     console.log(newPoint);
+    real_locations.push(realLocation);
     localStorage.setItem("points", JSON.stringify(points));
+    localStorage.setItem("real_locations", JSON.stringify(real_locations));
   };
 
-  const chancgeActive = () => {
-    setActivation(()=>!activation);
-  }
+  const reDrawPoint = () => {
+    for (const element in evaluated) {
+      contextRef.current.fillStyle = evaluated[element].distancia >= 0 ? "#41e109" : " #e12709";
+      contextRef.current.beginPath();
+      contextRef.current.arc(evaluated[element].ubicaciones[element].offsetX, evaluated[element].ubicaciones[element].offsetY, 2, 0, 2 * Math.PI, true);
+      contextRef.current.fill();
+    }
+  };
 
   useEffect(() => {
     try {
-
       setFnP(() => Function);
       functionPlot(
         Object.assign({}, FunctionPlotOptions, {
           target: rootEl.current,
-          width: 400,
-          height: 400,
+          width: 419,
+          height: 399,
           grid: true,
           disableZoom: true,
           yAxis: { domain: [-30, 30] },
@@ -51,6 +66,8 @@ const MathPlot = ({ Function }) => {
       ctx.lineCap = "round";
       ctx.lineWidth = 5;
 
+      reDrawPoint();
+
       contextRef.current = ctx;
     } catch (e) {
       console.log(e);
@@ -59,19 +76,18 @@ const MathPlot = ({ Function }) => {
     return () => {
       localStorage.removeItem("fn");
     };
-  }, [Function, fnP]);
+  }, [Function, fnP, evaluated]);
 
   return (
     <>
       <div ref={rootEl}></div>
       <canvas
-        width="400"
-        height="400"
+        width="360"
+        height="360"
         onClick={drawPoint}
         ref={canvasEl}
         className="overlay"
       ></canvas>
-      <button onClick={chancgeActive}>Activar</button>
     </>
   );
 };
@@ -79,6 +95,7 @@ const MathPlot = ({ Function }) => {
 const mapStateToProps = (state, props) => {
   return {
     Function: state.Function,
+    evaluated: state.evaluatedPoint,
   };
 };
 

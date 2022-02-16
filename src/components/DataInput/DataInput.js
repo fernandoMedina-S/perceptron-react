@@ -13,25 +13,32 @@ const DataInput = () => {
   const submitHandler = async (event) => {
     event.preventDefault();
     const points = JSON.parse(localStorage.getItem("points"));
+    const locations = JSON.parse(localStorage.getItem("real_locations"));
     const xValues = { x1: Math.random(), x2: Math.random() };
 
     const weights = new FormData(event.currentTarget);
     const w = { w1: weights.get("w1"), w2: weights.get("w2") };
 
-    const generalInfo = { points, xValues, w };
+    const generalInfo = { points, xValues, w, locations };
     const response = await axios.post(
       "http://127.0.0.1:3030/grafica",
       generalInfo
     );
+    console.log(generalInfo);
+    const data = response.data;
+
     localStorage.setItem(
       "fn",
       w.w1 + "*" + xValues.x1 + "+" + w.w2 + "*" + xValues.x2
     );
     store.dispatch({
       type: "SET_FUNCTION",
-      //body: w.w1 + "*" + xValues.x1 + "+" + w.w2 + "*" + xValues.x2,
       body: w.w1 + "x" +  "+" + w.w2 + "x",
     });
+    store.dispatch({
+      type: "SET_EVALUATED",
+      body: data,
+    })
   };
 
   return (
