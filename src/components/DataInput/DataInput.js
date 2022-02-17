@@ -3,6 +3,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import axios from "axios";
+import ListItemIcon from '@mui/material/ListItemIcon';
 
 import { connect } from "react-redux";
 import { store } from "../../services/store";
@@ -22,7 +23,7 @@ const DataInput = () => {
 
     const generalInfo = { points, xValues, w, locations };
     const response = await axios.post(
-      "https://perceptron-back.herokuapp.com/grafica",
+      "http://localhost:5000/grafica",
       generalInfo
     );
     console.log(generalInfo);
@@ -56,6 +57,13 @@ const DataInput = () => {
             name="w2"
             label="W2"
             className="data-input__textfield"
+            sx={{ mb: 3 }}
+          ></TextField>
+          <TextField
+            name="theta"
+            label="Θ"
+            className="data-input__textfield"
+            defaultValue="1"
             sx={{ mb: 3 }}
           ></TextField>
           <Button
