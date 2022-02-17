@@ -4,6 +4,7 @@ import reducer from "./reducer";
 const initialState = {
   Function: "",
   evaluatedPoint: "",
+  enteredPoints: []
 };
 
 export const store = createStore(

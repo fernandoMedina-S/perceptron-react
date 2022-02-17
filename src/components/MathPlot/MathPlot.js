@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import functionPlot, { FunctionPlotOptions } from "function-plot";
 
 import { connect } from "react-redux";
+import { store } from "../../services/store";
 
 const MathPlot = ({ Function, evaluated }) => {
   const rootEl = useRef(null);
@@ -28,8 +29,13 @@ const MathPlot = ({ Function, evaluated }) => {
     points.push(newPoint);
     console.log(newPoint);
     real_locations.push(realLocation);
+    
     localStorage.setItem("points", JSON.stringify(points));
     localStorage.setItem("real_locations", JSON.stringify(real_locations));
+    store.dispatch({
+      type: "SET_ENTERED_POINT",
+      body: newPoint,
+    })
   };
 
   const reDrawPoint = () => {

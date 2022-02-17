@@ -1,16 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import axios from "axios";
-import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemIcon from "@mui/material/ListItemIcon";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import Brightness1Icon from "@mui/icons-material/Brightness1";
+import ListItemText from "@mui/material/ListItemText";
+
 
 import { connect } from "react-redux";
 import { store } from "../../services/store";
 //"http://perceptron-back.herokuapp.com/grafica"
 //"http://localhost:5000/grafica"
-const DataInput = () => {
+//theme.palette.background.paper
+const DataInput = ({ pointList }) => {
+  const [enteredPoints, setEnteredPoints] = useState([]);
+  let contador = 0;
 
+  useEffect(() => {
+    setEnteredPoints(pointList);
+  }, [enteredPoints, pointList]);
 
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -35,13 +46,15 @@ const DataInput = () => {
     );
     store.dispatch({
       type: "SET_FUNCTION",
-      body: w.w1 + "x" +  "+" + w.w2 + "x",
+      body: w.w1 + "x" + "+" + w.w2 + "x",
     });
     store.dispatch({
       type: "SET_EVALUATED",
       body: data,
-    })
+    });
   };
+
+  
 
   return (
     <>
@@ -70,9 +83,37 @@ const DataInput = () => {
             variant="contained"
             className="data-input__button"
             type="submit"
+            sx={{ mb: 3 }}
           >
             Calcular
           </Button>
+
+          <List
+            sx={{
+              overflow: "auto",
+              maxHeight: 150,
+            }}
+          >
+            {enteredPoints.map((element) => {
+              contador = contador + 1;
+              return (
+                <ListItem>
+                  <ListItemIcon>
+                    <Brightness1Icon color="secondary" />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={"Punto " + contador}
+                    secondary={
+                      "X: " +
+                      element.offsetX.toFixed(2) +
+                      "   Y: " +
+                      element.offsetY.toFixed(2)
+                    }
+                  />
+                </ListItem>
+              );
+            })}
+          </List>
         </div>
       </Box>
     </>
@@ -81,6 +122,7 @@ const DataInput = () => {
 
 const mapStateToProps = (state, props) => {
   return {
+    pointList: state.enteredPoints,
     lastUpdate: state.lastUpdate,
   };
 };
