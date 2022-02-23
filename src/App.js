@@ -9,7 +9,7 @@ function App() {
     <>
       <div className="main__container">
         <div className="main__cartesian">
-          {/* <Cartesian></Cartesian> */}
+          
           <MathPlot></MathPlot>
         </div>
         <div className="main__data-input">
