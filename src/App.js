@@ -2,6 +2,8 @@ import './App.scss';
 import Cartesian from "./components/cartesian"
 import DataInput from './components/DataInput/DataInput';
 import MathPlot from "./components/MathPlot/MathPlot";
+import DataLearning from './components/DataLearning';
+import Learning from "./components/Learning";
 
 
 function App() {
@@ -13,7 +15,7 @@ function App() {
           <MathPlot></MathPlot>
         </div>
         <div className="main__data-input">
-          <DataInput></DataInput>
+          <DataLearning></DataLearning>
         </div>
       </div>
     </>
