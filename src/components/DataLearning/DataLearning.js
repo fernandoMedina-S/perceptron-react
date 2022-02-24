@@ -10,6 +10,7 @@ import Brightness1Icon from "@mui/icons-material/Brightness1";
 import ListItemText from "@mui/material/ListItemText";
 
 
+
 import { connect } from "react-redux";
 import { store } from "../../services/store";
 //"http://perceptron-back.herokuapp.com/grafica"
@@ -32,7 +33,7 @@ const DataLearning = ({ pointList }) => {
     const xValues = { x1: Math.random(), x2: Math.random() };
 
     const weights = new FormData(event.currentTarget);
-    const w = { w1: weights.get("w1"), w2: weights.get("w2") };
+    const w = { w1: w1W, w2: w2W };
 
     const generalInfo = { points, xValues, w, locations };
     const response = await axios.post(

@@ -12,7 +12,7 @@ function App() {
       <div className="main__container">
         <div className="main__cartesian">
           
-          <MathPlot></MathPlot>
+          <Learning></Learning>
         </div>
         <div className="main__data-input">
           <DataLearning></DataLearning>
